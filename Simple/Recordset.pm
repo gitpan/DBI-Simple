@@ -36,6 +36,7 @@ sub new
 	bless $self, $class;
 	$self->{_sth} = $sth;
 	$self->{_dbh} = $dbh;
+	$self->{data} = {};
 
 	$self->move_next;
 
@@ -66,7 +67,7 @@ sub move_next
 		return;
 	}
 
-	$self->{$_} = $hashref->{$_} for(keys(%$hashref));
+	$self->{data}->{$_} = $hashref->{$_} for(keys(%$hashref));
 }
 
 sub has_records
@@ -102,11 +103,11 @@ sub AUTOLOAD
 
 	if(@_)
 	{
-		$self->{$name} = shift;
+		$self->{data}->{$name} = shift;
 	}
 	else
 	{
-		return $self->{$name};
+		return $self->{data}->{$name};
 	}
 }
 

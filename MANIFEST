@@ -4,3 +4,4 @@ MANIFEST
 README
 Simple.pm
 t/1.t
+Simple/Recordset.pm

@@ -80,23 +80,29 @@ DBI::Simple - Perl extension to allow easy DBI access
   use DBI::Simple;
   $dbi = DBI::Simple->connect('mysql:hostname=localhost;database=main', 'user', 'pass');
   $rs = $dbi->query('SELECT * FROM Users');
-  while($rs->has_records)
+  while(!$rs->eof)
   {
-	  print @{$rs->row};
+	  print "Client = " . $rs->client . "\n";
+	  print "ID = " . $rs->id . "\n";
+
+	  print "\n\n\n a list of all fields and their values:\n";
+
+	  print "$_ = $rs->{data}->{$_}\n" for keys(%{$rs->{data}});
+
 	  $rs->move_next;
   }
-  $rs->insert(name => 'jdoe', pass => 'password');
-  $rs->commit;
+
+  $dbi->disconnect;
 
 =head1 ABSTRACT
 
-  DBI::Simple abstracts the internals of the DBI module.  It inherits from DBI, so you retain all the functionality
-  of the DBI when using DBI::Simple.
+  DBI::Simple abstracts the internals of the DBI module.  It encapsulates the  DBI, so you retain all the 
+  functionality of the DBI when using DBI::Simple.
 
 =head1 DESCRIPTION
 
-DBI::Simple inherits all the methods of DBI.  The following functions are new or operate differently than their 
-DBI counterparts.
+Any DBI function can be accessed by returning the DBI::Simple object's underlying database handle.  This handle
+can be retrieved with the C<dbh> function.  The following functions are members of the DBI::Simple package:
 
 =over
 
@@ -138,6 +144,14 @@ Cache prepared statements for better performance
 =item *
 
 Enable transaction-based updating
+
+=item *
+
+Create tests.
+
+=iem *
+
+Insert and Delete methods
 
 =back
 
