@@ -1,0 +1,6 @@
+Revision history for Perl extension DBI::Simple.
+
+0.01  Fri Jan  3 15:25:54 2003
+	- original version; created by h2xs 1.22 with options
+		-n DBI::Simple -X
+
