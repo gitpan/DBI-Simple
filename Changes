@@ -1,0 +1,8 @@
+Revision history for Perl extension DBI::Simple.
+
+1.0  Mon Oct 31 23:28:39 2005
+	- original version; created by h2xs 1.23 with options
+		-AX --skip-exporter --use-new-tests -n DBI::Simple -b 5.8.0 --email=landman@scalableinformatics.com -v1.0
+
+	Imported SICE.pm into DBI::Simple, created tests, did
+	basic documentation fixup.

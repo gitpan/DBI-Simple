@@ -2,5 +2,5 @@ Changes
 Makefile.PL
 MANIFEST
 README
-Simple.pm
-t/1.t
+t/DBI-Simple.t
+lib/DBI/Simple.pm
